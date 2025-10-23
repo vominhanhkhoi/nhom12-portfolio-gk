@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My portfolio</title>
+
+<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm  ">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <span class="ms-2 text-info fw-bold">VMAK</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Home page</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<header class="hero bg-light-subtle">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <span class="chip"><i class="bi bi-laptop"></i> Full-Stack Developer</span>
+                <h1 class="display-5 mt-3"><span class="text-info">Võ Minh Anh Khôi</span></h1>
+                <p class="lead text-muted ">
+                    Undergraduate full-stack developer, software engineer
+                </p>
+            </div>
+            <div class="col-lg-6 text-center d-none d-lg-block">
+                <img src="img/businessidea.png"
+                     alt="hero" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="py-5 ">
+    <div class="container">
+        <section id="about" class="mb-5">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-4 text-center">
+                    <img src="img/avatar.png" alt="avatar" class="img-fluid rounded-circle shadow-sm"
+                         style="max-width:220px">
+                </div>
+                <div class="col-md-8">
+                    <h2>About Me</h2>
+                    <p class="text-muted">
+                        I’m an undergraduate full-stack developer and software engineer passionate about building web
+                        applications and learning new modern technologies.
+                        I enjoy working across the entire development stack.
+                        With a solid foundation in programming, databases, I’m eager to grow as a developer and
+                        contribute to real-world projects that make an impact.
+                    </p>
+                    <div class="row g-2 mt-3">
+                        <div class="col-sm-6"><strong>Email:</strong> VMAK@gmail.com</div>
+                        <div class="col-sm-6"><strong>Location:</strong> Hồ Chí Minh, Việt Nam</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-5">
+            <h3 class="mb-3">Skills</h3>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card p-3 h-100">
+                        <h5>Frontend</h5>
+                        <strong>Beginner: <span
+                                class="text-muted small fw-medium">React, Bootstrap, javascript</span></strong>
+                        <strong>Intermediate: <span class="text-muted small fw-medium">HTML5, CSS</span></strong>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="badge bg-light text-dark skill-badge">React</span>
+                            <span class="badge bg-light text-dark skill-badge">Bootstrap</span>
+                            <span class="badge bg-light text-dark skill-badge">Sass</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3 h-100">
+                        <h5>Backend</h5>
+                        <strong>Beginner:<span
+                                class="text-muted small fw-medium"> Spring Boot, REST APIs, PostgreSQL</span></strong>
+                        <strong>Intermediate: <span
+                                class="text-muted small fw-medium"> java, Python, C++ </span></strong>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="badge bg-light text-dark skill-badge">Spring</span>
+                            <span class="badge bg-light text-dark skill-badge">SQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3 h-100">
+                        <h5>Tools</h5>
+                        <strong>Beginner: <span class="text-muted small fw-medium">Docker</span></strong>
+                        <strong>Intermediate: <span class="text-muted small fw-medium">Git</span></strong>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="badge bg-light text-dark skill-badge">Docker</span>
+                            <span class="badge bg-light text-dark skill-badge">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-5">
+            <h3 class="mb-3">Experience</h3>
+            <div class="timeline">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 h-100">
+                            <h5 class="mb-1">Undergraduate at UTH</h5>
+                            <small class="text-muted">2023 — Present</small>
+                            <p class="mt-2 small text-muted">
+                                Studies about computer science, programing and general IT fields.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-5 bg-success rounded-3">
+            <div class="container text-center">
+                <h2 class="fw-bold mb-4"><i class="bi bi-telephone"></i> Contact Me</h2>
+                <p class="lead mb-4">
+                    I’m always open to new opportunities, collaborations, and learning experiences.
+                    Feel free to reach out to me!
+                </p>
+
+                <div class="d-flex justify-content-center gap-4">
+                    <a href="mailto:VMAK@gmail.com" class="btn btn-primary">
+                        <i class="bi bi-envelope me-2"></i>Email
+                    </a>
+                    <a href="https://github.com/vominhanhkhoi" target="_blank" class="btn btn-dark">
+                        <i class="bi bi-github me-2"></i>GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+
+<footer class="py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div><span id="year">2025</span> VMAK</div>
+        <div class="small text-muted">Built with Bootstrap 5</div>
+    </div>
+</footer>
+
+<!--<script src="js/bootstrap.bundle.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+</html>
