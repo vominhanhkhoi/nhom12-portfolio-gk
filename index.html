@@ -1,173 +1,281 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>My portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nhóm của chúng mình — 5 thành viên</title>
+  <style>
+    :root{
+      --bg:#fff1f2;        /* hồng rất nhạt */
+      --card:#ffffff;      /* nền thẻ */
+      --text:#1f2937;      /* chữ chính */
+      --muted:#6b7280;     /* chữ phụ */
+      --brand:#ef4444;     /* đỏ chủ đạo */
+      --brand-2:#fb7185;   /* hồng điểm nhấn */
+      --ring:rgba(251,113,133,.25); /* glow hồng */
+      --shadow:0 10px 30px rgba(239,68,68,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #ffe4e6 10%, transparent 60%),
+        radial-gradient(900px 600px at 120% -20%, #ffe4e6 10%, transparent 60%),
+        linear-gradient(180deg, #fff, var(--bg));
+    }
+    .container{max-width:1200px; margin:0 auto; padding:28px 18px 48px}
 
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    /* Header */
+    .hero{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:26px}
+    .brand{display:flex; align-items:center; gap:14px}
+    .logo{
+      width:48px; height:48px; border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, #fff, #ffe4e6 60%, #fecdd3);
+      box-shadow:0 8px 18px rgba(251,113,133,.25);
+      display:grid; place-items:center; font-weight:700; color:#b91c1c
+    }
+    .title{margin:0; font-size:clamp(20px, 2.4vw, 28px); letter-spacing:0.2px}
+    .subtitle{margin:4px 0 0; color:var(--muted); font-size:14px}
+
+    .search{display:flex; align-items:center; gap:10px}
+    .search input{
+      width:min(320px, 60vw);
+      padding:12px 14px; border-radius:14px; outline:none; border:1px solid #fecaca; background:#fff;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+    }
+
+    /* Grid of members */
+    .grid{display:grid; grid-template-columns:repeat(1, minmax(0, 1fr)); gap:18px}
+    @media (min-width:560px){.grid{grid-template-columns:repeat(2, 1fr)}}
+    @media (min-width:840px){.grid{grid-template-columns:repeat(3, 1fr)}}
+    @media (min-width:1100px){.grid{grid-template-columns:repeat(5, 1fr)}}
+
+    .card{
+      background:var(--card); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease; position:relative; isolation:isolate;
+      border:1px solid #ffe4e6
+    }
+    .card::after{ /* subtle border glow on hover */
+      content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+      background:radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), var(--ring), transparent 40%);
+      opacity:0; transition:opacity .2s ease
+    }
+    .card:hover{transform:translateY(-4px); box-shadow:0 16px 48px rgba(239,68,68,.16)}
+    .card:hover::after{opacity:1}
+
+    .top{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+    .avatar{
+      width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg, #ffe4e6, #fff5f5);
+      display:grid; place-items:center; font-weight:700; color:#b91c1c; border:1px solid #fecaca; overflow:hidden
+    }
+    /* Khi có ảnh */
+    .avatar.has-photo{background:#ddd; border:0;}
+    .avatar.has-photo img{width:100%; height:100%; object-fit:cover; display:block}
+
+    .name{margin:0; font-size:16.5px}
+    .role{margin:3px 0 0; font-size:13px; color:var(--muted)}
+
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px}
+    .tag{font-size:12px; padding:6px 10px; border-radius:999px; background:#ffe4e6; color:#b91c1c; border:1px solid #fecaca}
+
+    .contacts{display:flex; flex-wrap:wrap; gap:10px}
+    .icon-btn{display:inline-flex; align-items:center; gap:8px; padding:9px 12px; border-radius:12px; border:1px solid #fecaca; text-decoration:none; color:#111827; background:#fff; font-size:13px; font-weight:600}
+    .icon-btn:hover{border-color:#fda4af; box-shadow:0 6px 20px rgba(239,68,68,.08)}
+
+    .icon{width:16px; height:16px; display:inline-block}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+    /* Footer */
+    .footer{margin-top:28px; color:var(--muted); font-size:13px; text-align:center}
+    .footer a{color:var(--brand); text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+  </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm  ">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <span class="ms-2 text-info fw-bold">VMAK</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                <li class="nav-item"><a class="btn btn-outline-primary ms-2" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Home page</a></li>
-            </ul>
+  <div class="container">
+    <header class="hero">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">N</div>
+        <div>
+          <h1 class="title">Nhóm của chúng mình</h1>
+          <p class="subtitle">Trang chính hiển thị 5 thành viên • Chạm vào icon để liên hệ nhanh</p>
         </div>
-    </div>
-</nav>
+      </div>
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="Tìm theo tên, vai trò, kỹ năng…" aria-label="Tìm kiếm thành viên">
+      </div>
+    </header>
 
-
-<header class="hero bg-light-subtle">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <span class="chip"><i class="bi bi-laptop"></i> Full-Stack Developer</span>
-                <h1 class="display-5 mt-3"><span class="text-info">Võ Minh Anh Khôi</span></h1>
-                <p class="lead text-muted ">
-                    Undergraduate full-stack developer, software engineer
-                </p>
-            </div>
-            <div class="col-lg-6 text-center d-none d-lg-block">
-                <img src="img/businessidea.png"
-                     alt="hero" class="img-fluid rounded">
-            </div>
+    <main class="grid" id="memberGrid">
+      <!-- Card 1: Huỳnh Công Nam Dương -->
+      <article class="card"
+               data-name="Huỳnh Công Nam Dương"
+               data-role="Dev"
+               data-tags="Công nghệ thông tin, Web, JavaScript"
+               data-photo="duong.png"
+               data-profile="profile-namduong.html">
+        <div class="top">
+          <div class="avatar" aria-hidden="true">ND</div>
+          <div>
+            <h2 class="name">Huỳnh Công Nam Dương</h2>
+            <p class="role">Dev • Công nghệ thông tin (UTH HCM)</p>
+          </div>
         </div>
-    </div>
-</header>
+        <div class="tags">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JS</span>
+          <span class="tag">UI/UX</span>
+        </div>
+        <div class="contacts">
+          <a class="icon-btn" href="duong/profile-namduong.html" title="Xem hồ sơ chi tiết">
+            <span class="icon" aria-hidden="true">🏷️</span>
+            Hồ sơ
+          </a>
+          <a class="icon-btn" href="tel:+84899876452" title="Gọi điện">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 5a3 3 0 0 1 3-3h1a2 2 0 0 1 2 2v2a2 2 0 0 1-.59 1.41l-1 1A16 16 0 0 0 14.59 20l1-1A2 2 0 0 1 17 18h2a2 2 0 0 1 2 2v1a3 3 0 0 1-3 3h-1C8.82 24 0 15.18 0 4V3a3 3 0 0 1 2-1Z" fill="currentColor"/></svg>
+            Gọi
+          </a>
+          <a class="icon-btn" href="mailto:2251330006@ut.edu.vn" title="Gửi email">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1.2l-10 6.25L2 6.2V5Zm0 3.8V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8.8l-9.12 5.7a2 2 0 0 1-2.08 0L2 8.8Z" fill="currentColor"/></svg>
+            Email
+          </a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.57 9.87v-6.98H7.9V12h2.53V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56V12h2.74l-.44 2.89h-2.3v6.98A10 10 0 0 0 22 12Z"/></svg>
+            FB
+          </a>
+        </div>
+      </article>
 
-<main class="py-5 ">
-    <div class="container">
-        <section id="about" class="mb-5">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-4 text-center">
-                    <img src="img/avatar.png" alt="avatar" class="img-fluid rounded-circle shadow-sm"
-                         style="max-width:220px">
-                </div>
-                <div class="col-md-8">
-                    <h2>About Me</h2>
-                    <p class="text-muted">
-                        I’m an undergraduate full-stack developer and software engineer passionate about building web
-                        applications and learning new modern technologies.
-                        I enjoy working across the entire development stack.
-                        With a solid foundation in programming, databases, I’m eager to grow as a developer and
-                        contribute to real-world projects that make an impact.
-                    </p>
-                    <div class="row g-2 mt-3">
-                        <div class="col-sm-6"><strong>Email:</strong> VMAK@gmail.com</div>
-                        <div class="col-sm-6"><strong>Location:</strong> Hồ Chí Minh, Việt Nam</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Card 2 -->
+      <article class="card" data-name="Nguyễn An" data-role="UI/UX" data-tags="Thiết kế, Figma">
+        <div class="top">
+          <div class="avatar" aria-hidden="true">NA</div>
+          <div>
+            <h2 class="name">Nguyễn An</h2>
+            <p class="role">UI/UX Designer</p>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Prototype</span>
+        </div>
+        <div class="contacts">
+          <a class="icon-btn" href="profile-nguyenan.html" title="Hồ sơ">🏷️ Hồ sơ</a>
+          <a class="icon-btn" href="mailto:an@example.com" title="Email">✉️ Email</a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">📘 FB</a>
+          <a class="icon-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener" title="LinkedIn">💼 LI</a>
+        </div>
+      </article>
 
-        <section id="skills" class="mb-5">
-            <h3 class="mb-3">Skills</h3>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="card p-3 h-100">
-                        <h5>Frontend</h5>
-                        <strong>Beginner: <span
-                                class="text-muted small fw-medium">React, Bootstrap, javascript</span></strong>
-                        <strong>Intermediate: <span class="text-muted small fw-medium">HTML5, CSS</span></strong>
-                        <div class="d-flex flex-wrap gap-2 mt-2">
-                            <span class="badge bg-light text-dark skill-badge">React</span>
-                            <span class="badge bg-light text-dark skill-badge">Bootstrap</span>
-                            <span class="badge bg-light text-dark skill-badge">Sass</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-3 h-100">
-                        <h5>Backend</h5>
-                        <strong>Beginner:<span
-                                class="text-muted small fw-medium"> Spring Boot, REST APIs, PostgreSQL</span></strong>
-                        <strong>Intermediate: <span
-                                class="text-muted small fw-medium"> java, Python, C++ </span></strong>
-                        <div class="d-flex flex-wrap gap-2 mt-2">
-                            <span class="badge bg-light text-dark skill-badge">Spring</span>
-                            <span class="badge bg-light text-dark skill-badge">SQL</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-3 h-100">
-                        <h5>Tools</h5>
-                        <strong>Beginner: <span class="text-muted small fw-medium">Docker</span></strong>
-                        <strong>Intermediate: <span class="text-muted small fw-medium">Git</span></strong>
-                        <div class="d-flex flex-wrap gap-2 mt-2">
-                            <span class="badge bg-light text-dark skill-badge">Docker</span>
-                            <span class="badge bg-light text-dark skill-badge">Git</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Card 3 -->
+      <article class="card" data-name="Trần Bình" data-role="Backend" data-tags="NodeJS, MySQL">
+        <div class="top">
+          <div class="avatar" aria-hidden="true">TB</div>
+          <div>
+            <h2 class="name">Trần Bình</h2>
+            <p class="role">Backend Developer</p>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">MySQL</span>
+        </div>
+        <div class="contacts">
+          <a class="icon-btn" href="profile-tranbinh.html" title="Hồ sơ">🏷️ Hồ sơ</a>
+          <a class="icon-btn" href="mailto:binh@example.com" title="Email">✉️ Email</a>
+          <a class="icon-btn" href="tel:+8498xxxxxxx" title="Gọi">📞 Gọi</a>
+          <a class="icon-btn" href="https://github.com/" target="_blank" rel="noopener" title="GitHub">🐙 GitHub</a>
+        </div>
+      </article>
 
-        <section id="experience" class="mb-5">
-            <h3 class="mb-3">Experience</h3>
-            <div class="timeline">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card p-3 h-100">
-                            <h5 class="mb-1">Undergraduate at UTH</h5>
-                            <small class="text-muted">2023 — Present</small>
-                            <p class="mt-2 small text-muted">
-                                Studies about computer science, programing and general IT fields.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Card 4 -->
+      <article class="card" data-name="Lê Chi" data-role="PM" data-tags="Quản lý dự án, Agile">
+        <div class="top">
+          <div class="avatar" aria-hidden="true">LC</div>
+          <div>
+            <h2 class="name">Lê Chi</h2>
+            <p class="role">Project Manager</p>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">Scrum</span>
+          <span class="tag">Kanban</span>
+        </div>
+        <div class="contacts">
+          <a class="icon-btn" href="profile-lechi.html" title="Hồ sơ">🏷️ Hồ sơ</a>
+          <a class="icon-btn" href="mailto:chi@example.com" title="Email">✉️ Email</a>
+          <a class="icon-btn" href="https://zalo.me/" target="_blank" rel="noopener" title="Zalo">💬 Zalo</a>
+        </div>
+      </article>
 
-        <section id="contact" class="py-5 bg-success rounded-3">
-            <div class="container text-center">
-                <h2 class="fw-bold mb-4"><i class="bi bi-telephone"></i> Contact Me</h2>
-                <p class="lead mb-4">
-                    I’m always open to new opportunities, collaborations, and learning experiences.
-                    Feel free to reach out to me!
-                </p>
+      <!-- Card 5 -->
+      <article class="card" data-name="Phạm Dũng" data-role="Tester" data-tags="QA, Test Cases">
+        <div class="top">
+          <div class="avatar" aria-hidden="true">PD</div>
+          <div>
+            <h2 class="name">Phạm Dũng</h2>
+            <p class="role">QA / Tester</p>
+          </div>
+        </div>
+        <div class="tags">
+          <span class="tag">EP/BVA</span>
+          <span class="tag">Automation</span>
+        </div>
+        <div class="contacts">
+          <a class="icon-btn" href="profile-phamdung.html" title="Hồ sơ">🏷️ Hồ sơ</a>
+          <a class="icon-btn" href="mailto:dung@example.com" title="Email">✉️ Email</a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">📘 FB</a>
+        </div>
+      </article>
+    </main>
 
-                <div class="d-flex justify-content-center gap-4">
-                    <a href="mailto:VMAK@gmail.com" class="btn btn-primary">
-                        <i class="bi bi-envelope me-2"></i>Email
-                    </a>
-                    <a href="https://github.com/vominhanhkhoi" target="_blank" class="btn btn-dark">
-                        <i class="bi bi-github me-2"></i>GitHub
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-</main>
+    <footer class="footer">
+      <p>👋 Tip: Bấm vào <strong>Hồ sơ</strong> để chuyển sang trang profile chi tiết. Thay số điện thoại, email, và link mạng xã hội theo thực tế.</p>
+    </footer>
+  </div>
 
+  <script>
+    // Hover glow follows cursor
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+      });
+    });
 
-<footer class="py-4">
-    <div class="container d-flex justify-content-between align-items-center">
-        <div><span id="year">2025</span> VMAK</div>
-        <div class="small text-muted">Built with Bootstrap 5</div>
-    </div>
-</footer>
+    // Simple client-side search by name/role/tags
+    const searchInput = document.getElementById('searchInput');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      cards.forEach(c => {
+        const hay = (c.dataset.name + ' ' + c.dataset.role + ' ' + c.dataset.tags).toLowerCase();
+        c.style.display = hay.includes(q) ? '' : 'none';
+      });
+    });
 
-<!--<script src="js/bootstrap.bundle.min.js"></script>-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+    // Load avatar photos if provided via data-photo
+    cards.forEach(c => {
+      const photo = c.dataset.photo;
+      if(!photo) return;
+      const ava = c.querySelector('.avatar');
+      if(!ava) return;
+      ava.classList.add('has-photo');
+      ava.innerHTML = `<img src="${photo}" alt="Ảnh thành viên">`;
+    });
+
+    // Click cả thẻ để mở hồ sơ (trừ khi bấm vào nút liên hệ)
+    document.querySelectorAll('.card[data-profile]').forEach(c => {
+      c.style.cursor = 'pointer';
+      c.addEventListener('click', e => {
+        if (e.target.closest('.icon-btn')) return;
+        location.href = c.dataset.profile;
+      });
+    });
+  </script>
 </body>
 </html>
