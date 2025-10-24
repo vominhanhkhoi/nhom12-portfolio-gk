@@ -1,0 +1,136 @@
+/* --- Phông chữ và Biến màu --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #2980b9; /* Màu xanh dương chủ đạo */
+    --secondary-color: #2c3e50; /* Màu xám đậm cho văn bản */
+    --background-color: #f4f7f6; /* Màu nền xám nhạt */
+    --card-background: #ffffff; /* Màu nền của thẻ hồ sơ */
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Thiết lập cơ bản --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Thẻ hồ sơ chính --- */
+.profile {
+    max-width: 800px;
+    width: 100%;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    padding: 40px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Ảnh đại diện --- */
+.avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Bo tròn ảnh đại diện */
+    border: 5px solid var(--primary-color);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+/* --- Tên và Giới thiệu --- */
+.profile h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Cỡ chữ lớn cho tên */
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.profile .intro {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 15px 0 30px 0;
+    color: #555;
+}
+
+/* --- Thông tin cá nhân --- */
+.info {
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Khoảng cách giữa ngày sinh và trường học */
+}
+
+.info p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+/* --- Các mục (Section) --- */
+section {
+    margin-bottom: 30px;
+    text-align: left; /* Căn lề trái cho nội dung trong các mục */
+    border-top: 1px solid #e0e0e0;
+    padding-top: 25px;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Hiệu ứng gạch chân cho tiêu đề mục */
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+section p {
+    line-height: 1.7;
+}
+
+/* --- Danh sách (Kỹ năng, Công cụ,...) --- */
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các mục xuống dòng nếu không đủ chỗ */
+    gap: 10px; /* Khoảng cách giữa các mục trong danh sách */
+}
+
+li {
+    background-color: #eaf3fb; /* Màu nền cho các mục kỹ năng */
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 20px; /* Bo tròn các mục */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+li:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
